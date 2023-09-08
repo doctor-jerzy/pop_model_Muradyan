@@ -722,6 +722,9 @@ def check_neighbors(grid, inplace=False):
     
     return gdf
     
+def create_migration_matrix(grid):
+    
+
 def surplus(grid, inplace=False):
     gdf = grid.gdf[['people', 'shop']].copy()
     
@@ -753,10 +756,10 @@ def surplus(grid, inplace=False):
     gdf['ind_profit'] = gdf.ind_prod - gdf.ind_cons
     
     if inplace:
-        grid.gdf['production'] = gdf.production
         grid.gdf['common_profit'] = gdf.common_profit
+        grid.gdf['ind_profit'] = gdf.common_profit
     
-    return gdf['common_profit']
+    return gdf[['common_profit','ind_profit']]
 
 # задаём квери
 query = 'Центральный федеральный округ'
